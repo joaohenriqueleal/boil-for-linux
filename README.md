@@ -6,7 +6,7 @@
 ```
 echo "Installing Boil CLI..."
 
-git clone https://github.com/joaohenriqueleal/boil-for-linux.git ~/boil-for-linux
+git clone https://github.com/joaohenriqueleal/boil-for-linux.git
 
 cd ~/boil-for-linux || exit
 
