@@ -1,5 +1,5 @@
 #!/bin/bash
-#: Create a React + TypeScript + Tailwind project with Prettier and Vite.
+#: Create a React + JavaScript + Tailwind project with Prettier and Vite.
 
 TARGET_DIR=$1
 PROJECT_NAME=${2:-my-project}
@@ -8,10 +8,10 @@ PROJECT_PATH="$TARGET_DIR/$PROJECT_NAME"
 SRC="$PROJECT_PATH/src"
 PUBLIC="$PROJECT_PATH/public"
 
-echo "Creating React + TS + Tailwind project in $PROJECT_PATH ..."
+echo "Creating React + JS +  Tailwind project in $PROJECT_PATH ..."
 
 cd "$TARGET_DIR" || exit
-yes n | npm create vite@latest "$PROJECT_NAME" -- --template react-ts
+yes n | npm create vite@latest "$PROJECT_NAME" -- --template react-js
 
 cat > "$PROJECT_PATH/.prettierrc" <<EOL
 {
@@ -27,12 +27,16 @@ EOL
 npm install --prefix "$PROJECT_PATH"
 
 [ -f "$SRC/App.css" ] && rm "$SRC/App.css"
-[ -f "$SRC/App.tsx" ] && rm "$SRC/App.tsx"
+[ -f "$SRC/App.jsx" ] && rm "$SRC/App.jsx"
+[ -f "$SRC/counter.ts" ] && rm "$SRC/counter.ts"
+[ -f "$SRC/main.ts" ] && rm "$SRC/main.ts"
+[ -f "$SRC/style.css" ] && rm "$SRC/style.css"
+[ -f "$SRC/typescript.svg" ] && rm "$SRC/typescript.svg"
 [ -f "$SRC/index.css" ] && rm "$SRC/index.css"
 [ -f "$SRC/assets/react.svg" ] && rm "$SRC/assets/react.svg"
 [ -f "$PUBLIC/vite.svg" ] && rm "$PUBLIC/vite.svg"
 
-cat > "$SRC/main.tsx" <<EOL
+cat > "$SRC/main.jsx" <<EOL
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
@@ -57,7 +61,7 @@ cat > "style.css" <<EOL
 EOL
 
 cd ".." || exit
-cat > "vite.config.ts" <<EOL
+cat > "vite.config.js" <<EOL
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite'
@@ -80,12 +84,17 @@ cat > "$PROJECT_PATH/index.html" <<EOL
     </head>
     <body>
         <div id="root"></div>
-        <script type="module" src="./src/main.tsx"></script>
+        <script type="module" src="./src/main.jsx"></script>
     </body>
 </html>
 EOL
 
+rm "tsconfig.json"
+
 npx prettier --write "$PROJECT_PATH"
+npm install @vitejs/plugin-react
+npm install react react-dom
+
 code "$PROJECT_PATH"
 
-echo "React + TS project created and ready: $PROJECT_NAME"
+echo "React + JS + Tailwind project created and ready: $PROJECT_NAME"
