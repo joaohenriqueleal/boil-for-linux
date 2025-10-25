@@ -1,5 +1,5 @@
 #!/bin/bash
-#: Create a React + TypeScript project with Prettier and Vite.
+#: Create a React + JavaScript project with Prettier and Vite.
 
 TARGET_DIR=$1
 PROJECT_NAME=${2:-my-project}
@@ -8,10 +8,10 @@ PROJECT_PATH="$TARGET_DIR/$PROJECT_NAME"
 SRC="$PROJECT_PATH/src"
 PUBLIC="$PROJECT_PATH/public"
 
-echo "Creating React + TS project in $PROJECT_PATH ..."
+echo "Creating React + JS project in $PROJECT_PATH ..."
 
 cd "$TARGET_DIR" || exit
-yes n | npm create vite@latest "$PROJECT_NAME" -- --template react-ts
+yes n | npm create vite@latest "$PROJECT_NAME" react-js
 
 cat > "$PROJECT_PATH/.prettierrc" <<EOL
 {
@@ -28,16 +28,20 @@ npx prettier --write "$PROJECT_PATH"
 npm install --prefix "$PROJECT_PATH"
 
 [ -f "$SRC/App.css" ] && rm "$SRC/App.css"
-[ -f "$SRC/App.tsx" ] && rm "$SRC/App.tsx"
+[ -f "$SRC/counter.ts" ] && rm "$SRC/counter.ts"
+[ -f "$SRC/main.ts" ] && rm "$SRC/main.ts"
+[ -f "$SRC/style.css" ] && rm "$SRC/style.css"
+[ -f "$SRC/typescript.svg" ] && rm "$SRC/typescript.svg"
+[ -f "$SRC/App.jsx" ] && rm "$SRC/App.jsx"
 [ -f "$SRC/index.css" ] && rm "$SRC/index.css"
 [ -f "$SRC/assets/react.svg" ] && rm "$SRC/assets/react.svg"
 [ -f "$PUBLIC/vite.svg" ] && rm "$PUBLIC/vite.svg"
 
-cat > "$SRC/main.tsx" <<EOL
+cat > "$SRC/main.jsx" <<EOL
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById('root')).render(
     <StrictMode>
         
     </StrictMode>
@@ -45,7 +49,7 @@ createRoot(document.getElementById('root')!).render(
 EOL
 
 mkdir -p "$SRC/pages" "$SRC/components" "$SRC/styles" "$SRC/utils" \
-         "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks"
+         "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks" "$SRC/assets"
 
 cat > "$PROJECT_PATH/index.html" <<EOL
 <!doctype html>
@@ -57,11 +61,13 @@ cat > "$PROJECT_PATH/index.html" <<EOL
     </head>
     <body>
         <div id="root"></div>
-        <script type="module" src="/src/main.tsx"></script>
+        <script type="module" src="./src/main.jsx"></script>
     </body>
 </html>
 EOL
 
+rm "$PROJECT_PATH/tsconfig.json"
+
 code "$PROJECT_PATH"
 
-echo "React + TS project created and ready: $PROJECT_NAME"
+echo "React + JS project created and ready: $PROJECT_NAME"

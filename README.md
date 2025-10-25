@@ -10,12 +10,12 @@ git clone https://github.com/joaohenriqueleal/boil-for-linux.git ~/boil-for-linu
 
 cd ~/boil-for-linux || exit
 
-sudo mkdir -p /usr/local/share/boil/commands
-sudo cp -r commands/*.sh /usr/local/share/boil/commands/
-sudo cp boil.sh /usr/local/bin/boil
+sudo mkdir -p /usr/local/share/boil-for-linux/commands
+sudo cp -r commands/*.sh /usr/local/share/boil-for-linux/commands/
+sudo cp boil.sh /usr/local/bin/boil-for-linux
 
-sudo chmod +x /usr/local/share/boil/commands/*.sh
-sudo chmod +x /usr/local/bin/boil
+sudo chmod +x /usr/local/share/boil-for-linux/commands/*.sh
+sudo chmod +x /usr/local/bin/boil-for-linux
 
 echo "Boil installed globally!"
 echo "Try: boil --help"

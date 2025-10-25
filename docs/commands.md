@@ -14,4 +14,5 @@ boil react-ts-wind
 
 ### React
 
-- ``` boil react-ts ``` (React + TypeScript)
+- ``` boil react-ts my-project``` (React + TypeScript)
+- ``` boil react-js my-project``` (React + JavaScript)
