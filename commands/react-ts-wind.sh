@@ -1,5 +1,5 @@
 #!/bin/bash
-#: Create a React + TypeScript project with Prettier and Vite.
+#: Create a React + TypeScript + Tailwind project with Prettier and Vite.
 
 TARGET_DIR=$1
 PROJECT_NAME=${2:-my-project}
@@ -24,7 +24,6 @@ cat > "$PROJECT_PATH/.prettierrc" <<EOL
 }
 EOL
 
-npx prettier --write "$PROJECT_PATH"
 npm install --prefix "$PROJECT_PATH"
 
 [ -f "$SRC/App.css" ] && rm "$SRC/App.css"
@@ -37,7 +36,7 @@ cat > "$SRC/main.tsx" <<EOL
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById('root')).render(
     <StrictMode>
         
     </StrictMode>
@@ -47,6 +46,29 @@ EOL
 mkdir -p "$SRC/pages" "$SRC/components" "$SRC/styles" "$SRC/utils" \
          "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks"
 
+cd "$PROJECT_PATH" || exit
+npm install tailwindcss @tailwindcss/vite
+mkdir "dist"
+cd "dist" || exit
+touch "style.css"
+cat > "style.css" <<EOL
+@charset "UTF-8";
+@import "tailwindcss";
+EOL
+
+cd ".." || exit
+cat > "vite.config.ts" <<EOL
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [
+    react(), tailwindcss()
+  ],
+})
+EOL
+
 cat > "$PROJECT_PATH/index.html" <<EOL
 <!doctype html>
 <html lang="en">
@@ -54,6 +76,7 @@ cat > "$PROJECT_PATH/index.html" <<EOL
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>$PROJECT_NAME</title>
+        <link rel="stylesheet" href="./dist/style.css">
     </head>
     <body>
         <div id="root"></div>
@@ -62,6 +85,7 @@ cat > "$PROJECT_PATH/index.html" <<EOL
 </html>
 EOL
 
+npx prettier --write "$PROJECT_PATH"
 code "$PROJECT_PATH"
 
 echo "React + TS project created and ready: $PROJECT_NAME"
