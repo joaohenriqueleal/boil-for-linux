@@ -4,18 +4,15 @@
 ## How to install?
 
 ```
+set -e
 echo "Installing Boil CLI..."
-
-git clone https://github.com/joaohenriqueleal/boil-for-linux.git
-
+git clone https://github.com/joaohenriqueleal/boil-for-linux.git ~/boil-for-linux || echo "Repo already exists, skipping clone."
 cd ~/boil-for-linux || exit
-
-sudo mkdir -p /usr/local/share/boil-for-linux/commands
-sudo cp -r commands/*.sh /usr/local/share/boil-for-linux/commands/
-sudo cp boil.sh /usr/local/bin/boil-for-linux
-
-sudo chmod +x /usr/local/share/boil-for-linux/commands/*.sh
-sudo chmod +x /usr/local/bin/boil-for-linux
+sudo mkdir -p /usr/local/share/boil/commands
+sudo cp -r commands/*.sh /usr/local/share/boil/commands/
+sudo cp boil.sh /usr/local/bin/boil
+sudo chmod +x /usr/local/share/boil/commands/*.sh
+sudo chmod +x /usr/local/bin/boil
 
 echo "Boil installed globally!"
 echo "Try: boil --help"
