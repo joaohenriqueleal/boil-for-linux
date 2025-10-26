@@ -1,8 +1,17 @@
 # BOIL-FOR-LINUX
+
+    ██████╗  ██████╗ ██╗██╗     
+    ██╔══██╗██╔═══██╗██║██║     
+    ██████╔╝██║   ██║██║██║     
+    ██╔══██╗██║   ██║██║██║     
+    ██████╔╝╚██████╔╝██║███████╗
+    ╚═════╝  ╚═════╝ ╚═╝╚══════╝
+
  A fast and minimal Bash-based CLI to scaffold modern web projects (React, Vue, Svelte) with a single command.
 
 ## How to install?
 
+To install, run exactaly code below
 ```
 set -e
 echo "Installing Boil CLI..."
@@ -27,3 +36,5 @@ boil react-ts my-project-name
 ```
 
 This command create a React + TypeScript project Completely clean, without the App.jsx and App.css files from the default Vite project, with 4-space formatting through the Prettier library, and much more. Boil generates a production-ready structure without any hassle or wasted time. See the [docs](https://github.com/joaohenriqueleal/boil-for-linux/blob/main/docs/commands.md) documentation for more details and commands.
+
+![Boil logo](./boil.png)

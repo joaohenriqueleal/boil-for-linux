@@ -68,6 +68,26 @@ EOL
 
 rm "$PROJECT_PATH/tsconfig.json"
 
+npm install react react-dom
+
+cat > "$PROJECT_PATH/package.json" << EOL
+{
+    "name": "my-project",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "typescript": "~5.9.3",
+        "vite": "^7.1.7"
+    }
+}
+EOL
+
 code "$PROJECT_PATH"
 
 echo "React + JS project created and ready: $PROJECT_NAME"

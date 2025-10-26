@@ -44,7 +44,7 @@ createRoot(document.getElementById('root')).render(
 EOL
 
 mkdir -p "$SRC/pages" "$SRC/components" "$SRC/styles" "$SRC/utils" \
-         "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks"
+         "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks" "$SRC/assets"
 
 cd "$PROJECT_PATH" || exit
 npm install tailwindcss @tailwindcss/vite

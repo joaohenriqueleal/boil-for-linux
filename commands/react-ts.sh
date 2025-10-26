@@ -45,7 +45,7 @@ createRoot(document.getElementById('root')!).render(
 EOL
 
 mkdir -p "$SRC/pages" "$SRC/components" "$SRC/styles" "$SRC/utils" \
-         "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks"
+         "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks" "$SRC/assets"
 
 cat > "$PROJECT_PATH/index.html" <<EOL
 <!doctype html>

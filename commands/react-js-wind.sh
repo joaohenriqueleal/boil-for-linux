@@ -48,7 +48,7 @@ createRoot(document.getElementById('root')).render(
 EOL
 
 mkdir -p "$SRC/pages" "$SRC/components" "$SRC/styles" "$SRC/utils" \
-         "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks"
+         "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks" "$SRC/assets"
 
 cd "$PROJECT_PATH" || exit
 npm install tailwindcss @tailwindcss/vite
@@ -94,6 +94,31 @@ rm "tsconfig.json"
 npx prettier --write "$PROJECT_PATH"
 npm install @vitejs/plugin-react
 npm install react react-dom
+
+cat > "package.json" << EOL
+{
+    "name": "my-project",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "typescript": "~5.9.3",
+        "vite": "^7.1.7"
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.1.16",
+        "@vitejs/plugin-react": "^5.1.0",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "tailwindcss": "^4.1.16"
+    }
+}
+EOL
 
 code "$PROJECT_PATH"
 
