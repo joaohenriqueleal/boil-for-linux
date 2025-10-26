@@ -69,7 +69,6 @@ cat > "package.json" << EOL
     "tailwindcss": "^4.1.16"
   }
 }
-
 EOL
 
 touch ".prettierrc"
@@ -86,6 +85,6 @@ EOL
 
 npx prettier --write .
 
-npx @tailwindcss/cli -i styles/style.css -o styles/tailwind.css --watch
 
 code .
+npx @tailwindcss/cli -i styles/style.css -o styles/tailwind.css --watch
