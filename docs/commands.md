@@ -14,10 +14,11 @@ boil react-ts-wind
 
 ### React
 
-- ``` boil react-ts my-project``` (React + TypeScript)
-- ``` boil react-js my-project``` (React + JavaScript)
 - ``` boil react-ts-wind my-project``` (React + TypeScript + Tailwindcss)
 - ``` boil react-js-wind my-project``` (React + JavaScript + Tailwindcss)
+- ``` boil react-ts my-project``` (React + TypeScript)
+- ``` boil react-js my-project``` (React + JavaScript)
 ### Vanilla
 - ``` boil vanilla-wind my-project``` (Vanilla + Tailwindcss)
+- ``` boil vanilla0ts my-project``` (Vanilla + TypeScript)
 - ``` boil vanilla my-project``` (Vanilla)

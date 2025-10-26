@@ -48,3 +48,5 @@ cat > ".prettierrc" <<EOL
 EOL
 
 npx prettier --write .
+
+code .

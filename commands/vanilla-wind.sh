@@ -87,3 +87,5 @@ EOL
 npx prettier --write .
 
 npx @tailwindcss/cli -i styles/style.css -o styles/tailwind.css --watch
+
+code .
