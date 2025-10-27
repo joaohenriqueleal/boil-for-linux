@@ -24,7 +24,6 @@ cat > "$PROJECT_PATH/.prettierrc" <<EOL
 }
 EOL
 
-npx prettier --write "$PROJECT_PATH"
 npm install --prefix "$PROJECT_PATH"
 
 [ -f "$SRC/App.css" ] && rm "$SRC/App.css"
@@ -88,6 +87,20 @@ cat > "$PROJECT_PATH/package.json" << EOL
 }
 EOL
 
+npm install -D @vitejs/plugin-react --prefix "$PROJECT_PATH"
+
+if [ ! -f "$PROJECT_PATH/vite.config.js" ]; then
+cat > "$PROJECT_PATH/vite.config.js" <<EOL
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+    plugins: [react()],
+})
+EOL
+fi
+
 code "$PROJECT_PATH"
+npx prettier --write "$PROJECT_PATH"
 
 echo "React + JS project created and ready: $PROJECT_NAME"
