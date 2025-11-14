@@ -40,9 +40,11 @@ cat > "$SRC/main.jsx" <<EOL
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import './styles/style.css';
+
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        
+
     </StrictMode>
 );
 EOL
@@ -50,17 +52,14 @@ EOL
 mkdir -p "$SRC/pages" "$SRC/components" "$SRC/styles" "$SRC/utils" \
          "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks" "$SRC/assets"
 
-cd "$PROJECT_PATH" || exit
-npm install tailwindcss @tailwindcss/vite
-mkdir "dist"
-cd "dist" || exit
-touch "style.css"
-cat > "style.css" <<EOL
+cat > "$SRC/styles/style.css" <<EOL
 @charset "UTF-8";
 @import "tailwindcss";
 EOL
 
-cd ".." || exit
+cd "$PROJECT_PATH" || exit
+npm install tailwindcss @tailwindcss/vite
+
 cat > "vite.config.js" <<EOL
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react';
@@ -80,7 +79,7 @@ cat > "$PROJECT_PATH/index.html" <<EOL
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>$PROJECT_NAME</title>
-        <link rel="stylesheet" href="./dist/style.css">
+        <link rel="stylesheet" href="./src/styles/style.css">
     </head>
     <body>
         <div id="root"></div>
