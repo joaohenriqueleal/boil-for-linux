@@ -21,5 +21,5 @@ boil react-ts-wind
 ### Vanilla
 - ``` boil vanilla-ts-wind my-project``` (Vanilla + TypeScript + Tailwindcss)
 - ``` boil vanilla-wind my-project``` (Vanilla + Tailwindcss)
-- ``` boil vanilla0ts my-project``` (Vanilla + TypeScript)
+- ``` boil vanilla-ts my-project``` (Vanilla + TypeScript)
 - ``` boil vanilla my-project``` (Vanilla)
