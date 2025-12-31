@@ -24,7 +24,7 @@ boil react-ts-wind
 - ``` boil vanilla-ts <my-project-name>``` (Vanilla + TypeScript)
 - ``` boil vanilla <my-project-name>``` (Vanilla)
 ### Vue
-- ``` boil vue-js-wind``` (Vue + JavaScript + Tailwind)
-- ``` boil vue-ts-wind``` (Vue + TypeScript + Tailwind)
-- ``` boil vue-ts``` (Vue + TypeScript)
-- ``` boil vue-js``` (Vue + JavaScript)
+- ``` boil vue-js-wind <my-project-name>``` (Vue + JavaScript + Tailwind)
+- ``` boil vue-ts-wind <my-project-name>``` (Vue + TypeScript + Tailwind)
+- ``` boil vue-ts <my-project-name>``` (Vue + TypeScript)
+- ``` boil vue-js <my-project-name>``` (Vue + JavaScript)
