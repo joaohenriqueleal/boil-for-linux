@@ -1,5 +1,5 @@
 #!/bin/bash
-#: Create a React + TypeScript + Tailwind project with Prettier and Vite.
+#: Create a Vue 3 + TypeScript + Tailwind project with Prettier and Vite.
 
 TARGET_DIR=$1
 PROJECT_NAME=${2:-my-project}
@@ -8,10 +8,10 @@ PROJECT_PATH="$TARGET_DIR/$PROJECT_NAME"
 SRC="$PROJECT_PATH/src"
 PUBLIC="$PROJECT_PATH/public"
 
-echo "Creating React + TS + Tailwind project in $PROJECT_PATH ..."
+echo "Creating Vue + TS + Tailwind project in $PROJECT_PATH ..."
 
 cd "$TARGET_DIR" || exit
-yes n | npm create vite@latest "$PROJECT_NAME" -- --template react-ts
+yes n | npm create vite@latest "$PROJECT_NAME" -- --template vue-ts
 
 cat > "$PROJECT_PATH/.prettierrc" <<EOL
 {
@@ -26,23 +26,20 @@ EOL
 
 npm install --prefix "$PROJECT_PATH"
 
-[ -f "$SRC/App.css" ] && rm "$SRC/App.css"
-[ -f "$SRC/App.tsx" ] && rm "$SRC/App.tsx"
-[ -f "$SRC/index.css" ] && rm "$SRC/index.css"
-[ -f "$SRC/assets/react.svg" ] && rm "$SRC/assets/react.svg"
+[ -f "$SRC/components/HelloWorld.vue" ] && rm "$SRC/components/HelloWorld.vue"
+[ -f "$SRC/App.vue" ] && rm "$SRC/App.vue"
+[ -f "$SRC/counter.ts" ] && rm "$SRC/counter.ts"
+[ -f "$SRC/typescript.svg" ] && rm "$SRC/typescript.svg"
+[ -f "$SRC/assets/vue.svg" ] && rm "$SRC/assets/vue.svg"
+[ -f "$SRC/style.css" ] && rm "$SRC/style.css"
 [ -f "$PUBLIC/vite.svg" ] && rm "$PUBLIC/vite.svg"
 
-cat > "$SRC/main.tsx" <<EOL
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+cat > "$SRC/main.ts" <<EOL
+import { createApp } from 'vue';
 
 import './styles/style.css';
 
-createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-
-    </StrictMode>
-);
+createApp({}).mount('#app');
 EOL
 
 mkdir -p "$SRC/pages" "$SRC/components" "$SRC/styles" "$SRC/utils" \
@@ -57,29 +54,30 @@ cd "$PROJECT_PATH" || exit
 npm install tailwindcss @tailwindcss/vite
 
 cat > "vite.config.ts" <<EOL
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  plugins: [
-    react(), tailwindcss()
-  ],
-})
+    plugins: [
+        vue(),
+        tailwindcss(),
+    ],
+});
 EOL
 
-cat > "$PROJECT_PATH/index.html" <<EOL
+cat > "index.html" <<EOL
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>$PROJECT_NAME</title>
-        <link rel="stylesheet" href="./src/styles/style.css">
+        <link rel="stylesheet" href="./src/styles/style.css" />
     </head>
     <body>
-        <div id="root"></div>
-        <script type="module" src="./src/main.tsx"></script>
+        <div id="app"></div>
+        <script type="module" src="./src/main.ts"></script>
     </body>
 </html>
 EOL
@@ -87,4 +85,4 @@ EOL
 npx prettier --write "$PROJECT_PATH"
 code "$PROJECT_PATH"
 
-echo "React + TS + Tailwind project created and ready: $PROJECT_NAME"
+echo "Vue + TS + Tailwind project created and ready: $PROJECT_NAME"
