@@ -13,18 +13,29 @@
 
 To install, run exactaly code below
 ```
+bash <<'EOF'
 set -e
 echo "Installing Boil CLI..."
-git clone https://github.com/joaohenriqueleal/boil-for-linux.git ~/boil-for-linux || echo "Repo already exists, skipping clone."
-cd ~/boil-for-linux || exit
-sudo mkdir -p /usr/local/share/boil/commands
-sudo cp -r commands/*.sh /usr/local/share/boil/commands/
-sudo cp boil.sh /usr/local/bin/boil
-sudo chmod +x /usr/local/share/boil/commands/*.sh
-sudo chmod +x /usr/local/bin/boil
-
+REPO_DIR="$HOME/boil-for-linux"
+INSTALL_DIR="/usr/local/share/boil"
+BIN_PATH="/usr/local/bin/boil"
+if [ ! -d "$REPO_DIR" ]; then
+    git clone https://github.com/joaohenriqueleal/boil-for-linux.git "$REPO_DIR"
+else
+    echo "Repo already exists, skipping clone."
+fi
+cd "$REPO_DIR"
+sudo rm -rf "$INSTALL_DIR"
+sudo rm -f "$BIN_PATH"
+sudo mkdir -p "$INSTALL_DIR"
+sudo cp -r commands "$INSTALL_DIR/"
+sudo cp boil.sh "$BIN_PATH"
+sudo chmod +x "$BIN_PATH"
+sudo chmod -R +x "$INSTALL_DIR/commands"
+echo
 echo "Boil installed globally!"
 echo "Try: boil --help"
+EOF
 ```
 
 ## How to use?
@@ -32,7 +43,7 @@ echo "Try: boil --help"
 example:
 
 ```
-boil react-ts my-project-name
+boil react-ts-wind-vitest <my-project-name>
 ```
 
 

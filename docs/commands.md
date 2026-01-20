@@ -1,28 +1,33 @@
 # Boil Pattern
 
 ```
-boil [freamework-variant-cssframework] project-name
+boil [freamework-variant-cssframework-testframework] project-name
 ```
 
 Example:
 
 ```
-boil react-ts-wind
+boil react-ts-wind-vitest
 ```
 
 ## Existent commands
 
 ### React
-
+- ``` boil react-js-wind-vitest <my-project-name>``` (React + JavaScript + Tailwindcss + Vitest)
+- ``` boil react-ts-wind-vitest <my-project-name>``` (React + TypeScript + Tailwindcss + Vitest)
 - ``` boil react-ts-wind <my-project-name>``` (React + TypeScript + Tailwindcss)
 - ``` boil react-js-wind <my-project-name>``` (React + JavaScript + Tailwindcss)
+- ``` boil react-ts-vitest <my-project-name>``` (React + TypeScript + Vitest)
+- ``` boil react-js-vitest <my-project-name>``` (React + JavaScript + Vitest)
 - ``` boil react-ts <my-project-name>``` (React + TypeScript)
 - ``` boil react-js <my-project-name>``` (React + JavaScript)
+
 ### Vanilla
 - ``` boil vanilla-ts-wind <my-project-name>``` (Vanilla + TypeScript + Tailwindcss)
 - ``` boil vanilla-wind <my-project-name>``` (Vanilla + Tailwindcss)
 - ``` boil vanilla-ts <my-project-name>``` (Vanilla + TypeScript)
 - ``` boil vanilla <my-project-name>``` (Vanilla)
+
 ### Vue
 - ``` boil vue-js-wind <my-project-name>``` (Vue + JavaScript + Tailwind)
 - ``` boil vue-ts-wind <my-project-name>``` (Vue + TypeScript + Tailwind)
