@@ -145,6 +145,8 @@ EOL
 npm install
 npx prettier --write .
 npm i -D @types/react @types/react-dom
+npm install -D vite@latest vitest@latest
+npm install --save-dev @types/node
 
 code "$PROJECT_PATH"
 

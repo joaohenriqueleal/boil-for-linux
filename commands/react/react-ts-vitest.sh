@@ -132,6 +132,8 @@ cd "$PROJECT_PATH" || exit
 npm install
 npx prettier --write .
 npm i -D @types/react @types/react-dom
+npm install -D vite@latest vitest@latest
+npm i @types/node
 
 code "$PROJECT_PATH"
 

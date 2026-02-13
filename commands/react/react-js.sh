@@ -1,19 +1,27 @@
 #!/bin/bash
-#: Create a React + JavaScript project with Prettier and Vite.
+# Create a React + JavaScript project with Prettier and Vite.
 
 TARGET_DIR=$1
 PROJECT_NAME=${2:-my-project}
 
+if [ -z "$TARGET_DIR" ]; then
+  echo "Usage: ./script.sh <target_directory> [project_name]"
+  exit 1
+fi
+
 PROJECT_PATH="$TARGET_DIR/$PROJECT_NAME"
-SRC="$PROJECT_PATH/src"
-PUBLIC="$PROJECT_PATH/public"
 
 echo "Creating React + JS project in $PROJECT_PATH ..."
 
 cd "$TARGET_DIR" || exit
-yes n | npm create vite@latest "$PROJECT_NAME" react-js
 
-cat > "$PROJECT_PATH/.prettierrc" <<EOL
+npm create vite@latest "$PROJECT_NAME" -- --template react
+
+cd "$PROJECT_NAME" || exit
+
+npm install
+
+cat > .prettierrc <<EOL
 {
     "tabWidth": 4,
     "useTabs": false,
@@ -24,19 +32,13 @@ cat > "$PROJECT_PATH/.prettierrc" <<EOL
 }
 EOL
 
-npm install --prefix "$PROJECT_PATH"
+rm -f src/App.css
+rm -f src/index.css
+rm -f src/assets/react.svg
+rm -f public/vite.svg
+rm -f src/App.jsx
 
-[ -f "$SRC/App.css" ] && rm "$SRC/App.css"
-[ -f "$SRC/counter.ts" ] && rm "$SRC/counter.ts"
-[ -f "$SRC/main.ts" ] && rm "$SRC/main.ts"
-[ -f "$SRC/style.css" ] && rm "$SRC/style.css"
-[ -f "$SRC/typescript.svg" ] && rm "$SRC/typescript.svg"
-[ -f "$SRC/App.jsx" ] && rm "$SRC/App.jsx"
-[ -f "$SRC/index.css" ] && rm "$SRC/index.css"
-[ -f "$SRC/assets/react.svg" ] && rm "$SRC/assets/react.svg"
-[ -f "$PUBLIC/vite.svg" ] && rm "$PUBLIC/vite.svg"
-
-cat > "$SRC/main.jsx" <<EOL
+cat > src/main.jsx <<EOL
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
@@ -47,10 +49,30 @@ createRoot(document.getElementById('root')).render(
 );
 EOL
 
-mkdir -p "$SRC/pages" "$SRC/components" "$SRC/styles" "$SRC/utils" \
-         "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks" "$SRC/assets"
+mkdir -p src/pages \
+         src/components \
+         src/styles \
+         src/utils \
+         src/tests \
+         src/shared \
+         src/services \
+         src/hooks \
+         src/assets
 
-cat > "$PROJECT_PATH/index.html" <<EOL
+npm install -D @vitejs/plugin-react
+
+if [ ! -f vite.config.js ]; then
+cat > vite.config.js <<EOL
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+    plugins: [react()],
+});
+EOL
+fi
+
+cat > index.html <<EOL
 <!doctype html>
 <html lang="en">
     <head>
@@ -60,47 +82,14 @@ cat > "$PROJECT_PATH/index.html" <<EOL
     </head>
     <body>
         <div id="root"></div>
-        <script type="module" src="./src/main.jsx"></script>
+        <script type="module" src="/src/main.jsx"></script>
     </body>
 </html>
+
 EOL
 
-rm "$PROJECT_PATH/tsconfig.json"
-
-npm install react react-dom
-
-cat > "$PROJECT_PATH/package.json" << EOL
-{
-    "name": "my-project",
-    "private": true,
-    "version": "0.0.0",
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview"
-    },
-    "devDependencies": {
-        "typescript": "~5.9.3",
-        "vite": "^7.1.7"
-    }
-}
-EOL
-
-npm install -D @vitejs/plugin-react --prefix "$PROJECT_PATH"
-
-if [ ! -f "$PROJECT_PATH/vite.config.js" ]; then
-cat > "$PROJECT_PATH/vite.config.js" <<EOL
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-export default defineConfig({
-    plugins: [react()],
-})
-EOL
-fi
-
-code "$PROJECT_PATH"
-npx prettier --write "$PROJECT_PATH"
+npx prettier --write .
 
 echo "React + JS project created and ready: $PROJECT_NAME"
+
+code .

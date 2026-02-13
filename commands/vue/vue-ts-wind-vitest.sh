@@ -136,6 +136,7 @@ EOL
 cd "$PROJECT_PATH" || exit
 rm -rf node_modules package-lock.json
 npm install
+npm i @types/node
 npx prettier --write .
 
 code "$PROJECT_PATH"
