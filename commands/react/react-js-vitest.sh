@@ -39,7 +39,11 @@ rm -f \
 "$SRC/style.css" \
 "$SRC/index.css" \
 "$SRC/assets/react.svg" \
-"$PUBLIC/vite.svg"
+"$SRC/assets/vite.svg" \
+"$SRC/assets/hero.png" \
+"$PUBLIC/vite.svg" \
+"$PUBLIC/favicon.svg" \
+"$PUBLIC/icons.svg"
 
 cat > "$SRC/main.jsx" <<EOL
 import { StrictMode } from 'react';

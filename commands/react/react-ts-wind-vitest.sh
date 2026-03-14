@@ -35,6 +35,13 @@ rm -f \
 "$SRC/assets/react.svg" \
 "$PUBLIC/vite.svg"
 
+rm -f \
+"$SRC/assets/vite.svg" \
+"$SRC/assets/hero.png" \
+"$PUBLIC/vite.svg" \
+"$PUBLIC/favicon.svg" \
+"$PUBLIC/icons.svg"
+
 cat > "$SRC/main.tsx" <<EOL
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

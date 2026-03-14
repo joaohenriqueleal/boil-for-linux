@@ -35,6 +35,13 @@ npm install --prefix "$PROJECT_PATH"
 [ -f "$SRC/style.css" ] && rm "$SRC/style.css"
 [ -f "$PUBLIC/vite.svg" ] && rm "$PUBLIC/vite.svg"
 
+rm -f \
+"$SRC/assets/vite.svg" \
+"$SRC/assets/hero.png" \
+"$PUBLIC/vite.svg" \
+"$PUBLIC/favicon.svg" \
+"$PUBLIC/icons.svg"
+
 cat > "$SRC/main.ts" <<EOL
 import { createApp } from 'vue';
 

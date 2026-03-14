@@ -33,6 +33,13 @@ npm install --prefix "$PROJECT_PATH"
 [ -f "$SRC/assets/react.svg" ] && rm "$SRC/assets/react.svg"
 [ -f "$PUBLIC/vite.svg" ] && rm "$PUBLIC/vite.svg"
 
+rm -f \
+"$SRC/assets/vite.svg" \
+"$SRC/assets/hero.png" \
+"$PUBLIC/vite.svg" \
+"$PUBLIC/favicon.svg" \
+"$PUBLIC/icons.svg"
+
 cat > "$SRC/main.tsx" <<EOL
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

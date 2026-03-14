@@ -77,6 +77,13 @@ rm -f \
 "$PROJECT_PATH/tsconfig.app.json" \
 "$PROJECT_PATH/tsconfig.node.json"
 
+rm -f \
+"$SRC/assets/vite.svg" \
+"$SRC/assets/hero.png" \
+"$PUBLIC/vite.svg" \
+"$PUBLIC/favicon.svg" \
+"$PUBLIC/icons.svg"
+
 cat > "$PROJECT_PATH/vite.config.js" <<EOL
 import { defineConfig } from 'vitest/config';
 import vue from '@vitejs/plugin-vue';

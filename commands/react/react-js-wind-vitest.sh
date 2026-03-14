@@ -34,6 +34,11 @@ rm -f \
 "$SRC/main.ts" \
 "$SRC/main.tsx" \
 "$SRC/counter.ts" \
+"$SRC/assets/vite.svg" \
+"$SRC/assets/hero.png" \
+"$PUBLIC/vite.svg" \
+"$PUBLIC/favicon.svg" \
+"$PUBLIC/icons.svg" \
 "$SRC/typescript.svg"
 
 rm -f \

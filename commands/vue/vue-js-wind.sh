@@ -82,6 +82,13 @@ rm -f tsconfig.json
 rm -f tsconfig.app.json
 rm -f tsconfig.node.json
 
+rm -f \
+"$SRC/assets/vite.svg" \
+"$SRC/assets/hero.png" \
+"$PUBLIC/vite.svg" \
+"$PUBLIC/favicon.svg" \
+"$PUBLIC/icons.svg"
+
 cat > "package.json" <<EOL
 {
     "name": "$PROJECT_NAME",

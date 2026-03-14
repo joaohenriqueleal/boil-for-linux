@@ -49,6 +49,13 @@ createRoot(document.getElementById('root')).render(
 );
 EOL
 
+rm -f \
+"$SRC/assets/vite.svg" \
+"$SRC/assets/hero.png" \
+"$PUBLIC/vite.svg" \
+"$PUBLIC/favicon.svg" \
+"$PUBLIC/icons.svg"
+
 mkdir -p "$SRC/pages" "$SRC/components" "$SRC/styles" "$SRC/utils" \
          "$SRC/tests" "$SRC/shared" "$SRC/services" "$SRC/hooks" "$SRC/assets"
 

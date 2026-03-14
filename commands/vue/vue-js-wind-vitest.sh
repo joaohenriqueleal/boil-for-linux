@@ -36,6 +36,13 @@ rm -f \
 "$SRC/style.css" \
 "$SRC/components/HelloWorld.vue"
 
+rm -f \
+"$SRC/assets/vite.svg" \
+"$SRC/assets/hero.png" \
+"$PUBLIC/vite.svg" \
+"$PUBLIC/favicon.svg" \
+"$PUBLIC/icons.svg"
+
 mkdir -p \
 "$SRC/pages" \
 "$SRC/components" \
